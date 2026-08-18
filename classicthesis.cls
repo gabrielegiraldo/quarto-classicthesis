@@ -5,10 +5,10 @@
 \ProvidesClass{classicthesis}[2026/08/17 v0.1 Quarto class for A Classic Thesis Style]
 
 % Keep original master-document defaults.  Explicit class options override
-% these package options, e.g. classoption: [drafting=false].
+% these package options, e.g. classoption: [draft=false].
 \PassOptionsToPackage{drafting=true,tocaligned=false,dottedtoc=false,eulerchapternumbers=false,floatperchapter=true,eulermath=false,beramono=true,palatino=true,style=classicthesis}{classicthesis}
-\DeclareOption{drafting=true}{\PassOptionsToPackage{drafting=true}{classicthesis}}
-\DeclareOption{drafting=false}{\PassOptionsToPackage{drafting=false}{classicthesis}}
+\DeclareOption{draft=true}{\PassOptionsToPackage{drafting=true}{classicthesis}}
+\DeclareOption{draft=false}{\PassOptionsToPackage{drafting=false}{classicthesis}}
 \DeclareOption{tocaligned=true}{\PassOptionsToPackage{tocaligned=true}{classicthesis}}
 \DeclareOption{tocaligned=false}{\PassOptionsToPackage{tocaligned=false}{classicthesis}}
 \DeclareOption{dottedtoc=true}{\PassOptionsToPackage{dottedtoc=true}{classicthesis}}
@@ -978,7 +978,7 @@
 \newcommand{\classicthesiscolophon}[1]{\gdef\ct@colophon{#1}}
 \newcommand{\ct@subtitle}{}
 \newcommand{\ct@location}{}
-\newcommand{\ct@titlegraphic}{TFZsuperellipse_bw}
+\newcommand{\ct@titlegraphic}{gfx/TFZsuperellipse_bw}
 \newcommand{\ct@dedication}{}
 \newcommand{\ct@abstract}{}
 \newcommand{\ct@abstractde}{}
@@ -993,76 +993,15 @@
   \hypersetup{pdftitle={\@title},pdfauthor={\@author}}%
 }
 
-% Original DirtyTitlepage.tex, Titlepage.tex, and Titleback.tex.
-\newcommand{\classicthesistitlepages}{%
-  \thispagestyle{empty}%
-  \begin{center}
-    \spacedlowsmallcaps{\@author}\\ \medskip
-    \begingroup\color{CTtitle}\spacedallcaps{\@title}\endgroup
-  \end{center}%
-  \begin{titlepage}
-    \begin{addmargin}[-1cm]{-3cm}
-      \begin{center}\large
-        \hfill\vfill
-        \begingroup\color{CTtitle}\spacedallcaps{\@title}\\ \bigskip\endgroup
-        \spacedlowsmallcaps{\@author}
-        \vfill
-        \includegraphics[width=6cm]{\ct@titlegraphic}\\ \medskip
-        \ct@subtitle\\ \medskip
-        \@date\ -- \classicthesis
-        \vfill
-      \end{center}
-    \end{addmargin}
-  \end{titlepage}%
-  \thispagestyle{empty}\hfill\vfill
-  \noindent\@author: \textit{\@title,} \ct@subtitle, \textcopyright\ \@date
-}
-
-\newcommand{\classicthesisdedicationpage}{%
-  \ifdefempty{\ct@dedication}{}{%
-    \cleardoublepage\thispagestyle{empty}\phantomsection
-    \pdfbookmark[1]{Dedication}{dedication}
-    \vspace*{3cm}\begin{center}\ct@dedication\end{center}}
-}
-\newcommand{\classicthesisabstractpage}{%
-  \ifdefempty{\ct@abstract}{}{%
-    \cleardoublepage\pdfbookmark[1]{Abstract}{abstract}
-    \begingroup\let\clearpage\relax\let\cleardoublepage\relax
-    \chapter*{Abstract}\ct@abstract
-    \ifdefempty{\ct@abstractde}{}{\vfill\begin{otherlanguage}{ngerman}\pdfbookmark[1]{Zusammenfassung}{zusammenfassung}\chapter*{Zusammenfassung}\ct@abstractde\end{otherlanguage}}%
-    \endgroup\vfill}
-}
-\newcommand{\classicthesispublicationspage}{%
-  \ifdefempty{\ct@publications}{}{\cleardoublepage\pdfbookmark[1]{Publications}{publications}\chapter*{Publications}\ct@publications}
-}
-\newcommand{\classicthesisacknowledgmentspage}{%
-  \ifdefempty{\ct@acknowledgments}{}{%
-    \cleardoublepage\pdfbookmark[1]{Acknowledgments}{acknowledgments}
-    \begingroup\let\clearpage\relax\let\cleardoublepage\relax
-    \chapter*{Acknowledgments}\ct@acknowledgments\endgroup}
-}
-
-% Original Contents.tex layout. Lists retain their source order and spacing.
-\newcommand{\classicthesiscontents}{%
-  \cleardoublepage\pagestyle{scrheadings}\pdfbookmark[1]{\contentsname}{tableofcontents}
-  \manualmark\markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
-  \tableofcontents
-  \automark[section]{chapter}
-  \renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{##1}}{\spacedlowsmallcaps{##1}}}
-  \renewcommand{\sectionmark}[1]{\markright{\textsc{\thesection}\enspace\spacedlowsmallcaps{##1}}}
-  \clearpage\begingroup\let\clearpage\relax\let\cleardoublepage\relax
-    \pdfbookmark[1]{\listfigurename}{lof}\listoffigures\vspace{8ex}
-    \pdfbookmark[1]{\listtablename}{lot}\listoftables\vspace{8ex}
-    \pdfbookmark[1]{\lstlistlistingname}{lol}\lstlistoflistings\vspace{8ex}
-    \ifdefempty{\ct@acronyms}{}{\pdfbookmark[1]{Acronyms}{acronyms}\markboth{\spacedlowsmallcaps{Acronyms}}{\spacedlowsmallcaps{Acronyms}}\chapter*{Acronyms}\begin{acronym}[UMLX]\ct@acronyms\end{acronym}}
-  \endgroup
-}
-\newcommand{\classicthesismainmatter}{\cleardoublepage\pagestyle{scrheadings}\pagenumbering{arabic}\cleardoublepage}
-\newcommand{\classicthesisprintbibliography}{%
-  \defbibheading{bibintoc}[\bibname]{\phantomsection\manualmark\markboth{\spacedlowsmallcaps{##1}}{\spacedlowsmallcaps{##1}}\addtocontents{toc}{\protect\vspace{\beforebibskip}}\addcontentsline{toc}{chapter}{##1}\chapter*{##1}}%
-  \printbibliography[heading=bibintoc]}
-\newcommand{\classicthesisdeclarationpage}{%
-  \ifdefempty{\ct@declaration}{}{\cleardoublepage\pdfbookmark[0]{Declaration}{declaration}\chapter*{Declaration}\thispagestyle{empty}\ct@declaration\par\bigskip\noindent\textit{\ct@location, \@date}\smallskip\begin{flushright}\begin{tabular}{m{5cm}}\\ \hline\centering\@author \\ \end{tabular}\end{flushright}}}
-\newcommand{\classicthesiscolophonpage}{%
-  \ifdefempty{\ct@colophon}{}{\cleardoublepage\pagestyle{empty}\hfill\vfill\pdfbookmark[0]{Colophon}{colophon}\section*{Colophon}\ct@colophon}}
+% Front/back matter commands are kept in source files mirroring ClassicThesis.
+\InputIfFileExists{FontBackMatter/Titleback.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Titleback.tex}{Restore front/back matter sources.}}
+\InputIfFileExists{FontBackMatter/Titlepage.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Titlepage.tex}{Restore front/back matter sources.}}
+\InputIfFileExists{FontBackMatter/Dedication.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Dedication.tex}{Restore front/back matter sources.}}
+\InputIfFileExists{FontBackMatter/Abstract.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Abstract.tex}{Restore front/back matter sources.}}
+\InputIfFileExists{FontBackMatter/Publications.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Publications.tex}{Restore front/back matter sources.}}
+\InputIfFileExists{FontBackMatter/Acknowledgments.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Acknowledgments.tex}{Restore front/back matter sources.}}
+\InputIfFileExists{FontBackMatter/Contents.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Contents.tex}{Restore front/back matter sources.}}
+\InputIfFileExists{FontBackMatter/Bibliography.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Bibliography.tex}{Restore front/back matter sources.}}
+\InputIfFileExists{FontBackMatter/Declaration.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Declaration.tex}{Restore front/back matter sources.}}
+\InputIfFileExists{FontBackMatter/Colophon.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Colophon.tex}{Restore front/back matter sources.}}
 \makeatother

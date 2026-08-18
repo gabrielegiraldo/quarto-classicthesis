@@ -31,6 +31,9 @@ $if(colophon)$\classicthesiscolophon{$colophon$}$endif$
 \classicthesissetupmetadata
 \pagenumbering{roman}
 \pagestyle{plain}
+$if(dirty-titlepage)$
+\classicthesisdirtytitlepage
+$endif$
 \classicthesistitlepages
 \classicthesisdedicationpage
 \classicthesisabstractpage

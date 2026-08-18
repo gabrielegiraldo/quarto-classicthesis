@@ -1,0 +1,7 @@
+% Original Dedication.tex.
+\newcommand{\classicthesisdedicationpage}{%
+  \ifdefempty{\ct@dedication}{}{%
+    \cleardoublepage\thispagestyle{empty}\phantomsection
+    \pdfbookmark[1]{Dedication}{dedication}
+    \vspace*{3cm}\begin{center}\ct@dedication\end{center}}
+}

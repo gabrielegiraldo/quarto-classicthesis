@@ -1,0 +1,4 @@
+% Original Bibliography.tex.
+\newcommand{\classicthesisprintbibliography}{%
+  \defbibheading{bibintoc}[\bibname]{\phantomsection\manualmark\markboth{\spacedlowsmallcaps{##1}}{\spacedlowsmallcaps{##1}}\addtocontents{toc}{\protect\vspace{\beforebibskip}}\addcontentsline{toc}{chapter}{##1}\chapter*{##1}}%
+  \printbibliography[heading=bibintoc]}
