@@ -3,6 +3,9 @@
 Quarto PDF template using an embedded `classicthesis` v4.8 class. No Quarto
 extension or local `.sty` files required.
 
+Original ClassicThesis LaTeX template developed by André Miede and Ivo
+Pletikosić. See [ClassicThesis on CTAN](https://ctan.org/pkg/classicthesis).
+
 ## Render
 
 ```bash
