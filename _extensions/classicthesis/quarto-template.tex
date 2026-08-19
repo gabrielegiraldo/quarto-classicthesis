@@ -1,6 +1,11 @@
 $passoptions.latex()$
 \makeatletter
-\def\input@path{{_extensions/classicthesis/}}
+% `quarto add` namespaces installed extensions; the starter project does not.
+\IfFileExists{_extensions/gabrielegiraldo/classicthesis/classicthesis.cls}{%
+  \def\input@path{{_extensions/gabrielegiraldo/classicthesis/}}%
+}{%
+  \def\input@path{{_extensions/classicthesis/}}%
+}
 \makeatother
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(papersize)$$papersize$paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 \usepackage{xcolor}
