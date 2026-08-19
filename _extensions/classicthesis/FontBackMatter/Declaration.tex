@@ -1,0 +1,3 @@
+% Original Declaration.tex.
+\newcommand{\classicthesisdeclarationpage}{%
+  \ifdefempty{\ct@declaration}{}{\cleardoublepage\pdfbookmark[0]{Declaration}{declaration}\chapter*{Declaration}\thispagestyle{empty}\ct@declaration\par\bigskip\noindent\textit{\ct@location, \@date}\smallskip\begin{flushright}\begin{tabular}{m{5cm}}\\ \hline\centering\@author \\ \end{tabular}\end{flushright}}}

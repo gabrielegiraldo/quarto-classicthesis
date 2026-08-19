@@ -1,0 +1,36 @@
+---
+title: "A Classic Thesis Style"
+subtitle: "An Homage to The Elements of Typographic Style"
+author: "André Miede & Ivo Pletikosić"
+date: "February 2025"
+location: "Saarbrücken"
+dirty-titlepage: false
+abstract: |
+  Short summary of contents in English.
+abstract-de: |
+  Kurze Zusammenfassung des Inhalts in deutscher Sprache.
+acknowledgments: |
+  Put acknowledgments here.
+declaration: |
+  Put declaration here.
+colophon: |
+  This document was typeset using `classicthesis`, developed by André Miede and Ivo Pletikosić.
+bibliography: references.bib
+format:
+  classicthesis-pdf:
+    classoption: [draft=false]
+    keep-tex: true
+---
+
+{{< include Chapters/Chapter01.qmd >}}
+{{< include Chapters/Chapter02.qmd >}}
+{{< include Chapters/Chapter03.qmd >}}
+{{< include Chapters/Chapter04.qmd >}}
+{{< include Chapters/Chapter05.qmd >}}
+{{< include Chapters/Chapter06.qmd >}}
+{{< include Chapters/Chapter07.qmd >}}
+{{< include Chapters/Chapter08.qmd >}}
+{{< include Chapters/Chapter09.qmd >}}
+{{< include Chapters/Chapter10.qmd >}}
+{{< include Chapters/Chapter11.qmd >}}
+{{< include Chapters/Chapter12.qmd >}}

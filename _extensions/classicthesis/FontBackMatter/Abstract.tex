@@ -1,0 +1,9 @@
+% Original Abstract.tex.
+\newcommand{\classicthesisabstractpage}{%
+  \ifdefempty{\ct@abstract}{}{%
+    \cleardoublepage\pdfbookmark[1]{Abstract}{abstract}
+    \begingroup\let\clearpage\relax\let\cleardoublepage\relax
+    \chapter*{Abstract}\ct@abstract
+    \ifdefempty{\ct@abstractde}{}{\vfill\begin{otherlanguage}{ngerman}\pdfbookmark[1]{Zusammenfassung}{zusammenfassung}\chapter*{Zusammenfassung}\ct@abstractde\end{otherlanguage}}%
+    \endgroup\vfill}
+}

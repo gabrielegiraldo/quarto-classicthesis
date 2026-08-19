@@ -1,0 +1,7 @@
+% Original Acknowledgments.tex.
+\newcommand{\classicthesisacknowledgmentspage}{%
+  \ifdefempty{\ct@acknowledgments}{}{%
+    \cleardoublepage\pdfbookmark[1]{Acknowledgments}{acknowledgments}
+    \begingroup\let\clearpage\relax\let\cleardoublepage\relax
+    \chapter*{Acknowledgments}\ct@acknowledgments\endgroup}
+}
