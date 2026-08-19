@@ -1,4 +1,7 @@
 $passoptions.latex()$
+\makeatletter
+\def\input@path{{_extensions/classicthesis/}}
+\makeatother
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(papersize)$$papersize$paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 \usepackage{xcolor}
 $if(geometry)$

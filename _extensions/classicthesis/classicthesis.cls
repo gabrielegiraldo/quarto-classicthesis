@@ -978,7 +978,15 @@
 \newcommand{\classicthesiscolophon}[1]{\gdef\ct@colophon{#1}}
 \newcommand{\ct@subtitle}{}
 \newcommand{\ct@location}{}
-\newcommand{\ct@titlegraphic}{gfx/TFZsuperellipse_bw}
+\IfFileExists{_extensions/classicthesis/gfx/TFZsuperellipse_bw.pdf}{%
+  \newcommand{\ct@titlegraphic}{_extensions/classicthesis/gfx/TFZsuperellipse_bw}%
+}{%
+  \IfFileExists{gfx/TFZsuperellipse_bw.pdf}{%
+    \newcommand{\ct@titlegraphic}{gfx/TFZsuperellipse_bw}%
+  }{%
+    \newcommand{\ct@titlegraphic}{TFZsuperellipse_bw}%
+  }%
+}
 \newcommand{\ct@dedication}{}
 \newcommand{\ct@abstract}{}
 \newcommand{\ct@abstractde}{}
@@ -993,15 +1001,25 @@
   \hypersetup{pdftitle={\@title},pdfauthor={\@author}}%
 }
 
-% Front/back matter commands are kept in source files mirroring ClassicThesis.
-\InputIfFileExists{FontBackMatter/Titleback.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Titleback.tex}{Restore front/back matter sources.}}
-\InputIfFileExists{FontBackMatter/Titlepage.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Titlepage.tex}{Restore front/back matter sources.}}
-\InputIfFileExists{FontBackMatter/Dedication.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Dedication.tex}{Restore front/back matter sources.}}
-\InputIfFileExists{FontBackMatter/Abstract.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Abstract.tex}{Restore front/back matter sources.}}
-\InputIfFileExists{FontBackMatter/Publications.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Publications.tex}{Restore front/back matter sources.}}
-\InputIfFileExists{FontBackMatter/Acknowledgments.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Acknowledgments.tex}{Restore front/back matter sources.}}
-\InputIfFileExists{FontBackMatter/Contents.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Contents.tex}{Restore front/back matter sources.}}
-\InputIfFileExists{FontBackMatter/Bibliography.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Bibliography.tex}{Restore front/back matter sources.}}
-\InputIfFileExists{FontBackMatter/Declaration.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Declaration.tex}{Restore front/back matter sources.}}
-\InputIfFileExists{FontBackMatter/Colophon.tex}{}{\ClassError{classicthesis}{Missing FontBackMatter/Colophon.tex}{Restore front/back matter sources.}}
+% Extension paths avoid copying support files into user project. Fallback paths
+% preserve direct use of the class and Quarto format-resource compatibility.
+\newcommand{\ct@inputfrontbackmatter}[1]{%
+  \InputIfFileExists{_extensions/classicthesis/FontBackMatter/#1}{}{%
+    \InputIfFileExists{FontBackMatter/#1}{}{%
+      \InputIfFileExists{#1}{}{%
+        \ClassError{classicthesis}{Missing front/back matter file #1}{Restore extension resources.}%
+      }%
+    }%
+  }%
+}
+\ct@inputfrontbackmatter{Titleback.tex}
+\ct@inputfrontbackmatter{Titlepage.tex}
+\ct@inputfrontbackmatter{Dedication.tex}
+\ct@inputfrontbackmatter{Abstract.tex}
+\ct@inputfrontbackmatter{Publications.tex}
+\ct@inputfrontbackmatter{Acknowledgments.tex}
+\ct@inputfrontbackmatter{Contents.tex}
+\ct@inputfrontbackmatter{Bibliography.tex}
+\ct@inputfrontbackmatter{Declaration.tex}
+\ct@inputfrontbackmatter{Colophon.tex}
 \makeatother
