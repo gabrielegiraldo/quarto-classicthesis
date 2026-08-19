@@ -1,5 +1,5 @@
 ---
-title: "A Not So Classic Thesis Style"
+title: "A Classic Thesis Style"
 subtitle: "An Homage to The Elements of Typographic Style"
 author: "André Miede & Ivo Pletikosić"
 date: "February 2025"
@@ -17,19 +17,8 @@ colophon: |
   This document was typeset using `classicthesis`, developed by André Miede and Ivo Pletikosić.
 bibliography: references.bib
 format:
-  pdf:
-    documentclass: classicthesis
+  classicthesis-pdf:
     classoption: [draft=false]
-    template: quarto-template.tex
-    pdf-engine: pdflatex
-    top-level-division: chapter
-    number-sections: true
-    date-format: "MMMM YYYY"
-    toc: true
-    toc-depth: 2
-    secnumdepth: 3
-    cite-method: biblatex
-    block-headings: false
     keep-tex: true
 ---
 

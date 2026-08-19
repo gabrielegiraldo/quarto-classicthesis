@@ -1,12 +1,46 @@
 # quarto-classicthesis
 
-Quarto PDF template using an embedded `classicthesis` v4.8 class. No Quarto
-extension or local `.sty` files required.
+Reusable Quarto PDF extension using an embedded `classicthesis` v4.8 class.
+No local `.sty` files required.
 
 Original ClassicThesis LaTeX template developed by André Miede and Ivo
 Pletikosić. See [ClassicThesis on CTAN](https://ctan.org/pkg/classicthesis).
 
-## Render
+## Use in an existing project
+
+Install extension:
+
+```bash
+quarto add gabrielegiraldo/quarto-classicthesis
+```
+
+Use extension format:
+
+```yaml
+format:
+  classicthesis-pdf:
+    classoption: [draft=false]
+```
+
+Render programmatically:
+
+```bash
+quarto render thesis.qmd --to classicthesis-pdf
+```
+
+`classicthesis-pdf` sets `documentclass: classicthesis`, PDF engine, chapter
+division, bibliography handling, and custom ClassicThesis LaTeX bridge.
+
+## Create starter project
+
+```bash
+quarto use template gabrielegiraldo/quarto-classicthesis
+```
+
+This repository is also its starter project. Edit `template.qmd`, `Chapters/`,
+and `references.bib`; `_extensions/` supplies rendering implementation.
+
+## Render starter project
 
 ```bash
 quarto render template.qmd
@@ -15,18 +49,22 @@ quarto render template.qmd
 ## Structure
 
 ```text
-classicthesis.cls        # embedded ClassicThesis class and style variants
-quarto-template.tex      # Quarto-to-ClassicThesis bridge
 template.qmd             # metadata, render settings, chapter includes
-FontBackMatter/          # title, abstract, contents, bibliography, etc.
 Chapters/                # Chapter01.qmd through Chapter12.qmd
-gfx/TFZsuperellipse_bw.pdf
 references.bib
+_extensions/
+  classicthesis/
+    _extension.yml       # classicthesis-pdf format defaults
+    classicthesis.cls    # embedded ClassicThesis class and style variants
+    quarto-template.tex  # Quarto-to-ClassicThesis bridge
+    FontBackMatter/      # title, abstract, contents, bibliography, etc.
+    gfx/TFZsuperellipse_bw.pdf
 ```
 
-`FontBackMatter/` mirrors original template's front/back matter. Change its
-`.tex` files only when changing page layout or typography. Edit document
-content and metadata in `template.qmd` or `Chapters/`.
+`_extensions/classicthesis/FontBackMatter/` mirrors original template's
+front/back matter. Change its `.tex` files only when changing page layout or
+typography. Edit document content and metadata in `template.qmd` or
+`Chapters/`.
 
 ## Edit content
 
@@ -53,9 +91,7 @@ chapter by creating another `.qmd` file and adding its include to
 dirty-titlepage: true    # small author-and-title page before title page
 
 format:
-  pdf:
-    documentclass: classicthesis
-    template: quarto-template.tex
+  classicthesis-pdf:
     classoption: [draft=false]
 ```
 
@@ -65,7 +101,8 @@ format:
 - `classoption: [style=arsclassica]`: use embedded `arsclassica` variant.
   Other embedded variants: `style=linedheaders`, `style=plain`.
 
-Default title graphic: `gfx/TFZsuperellipse_bw.pdf`. Override it with:
+Default title graphic: `gfx/TFZsuperellipse_bw.pdf`, supplied by extension.
+Override it with:
 
 ```yaml
 title-graphic: gfx/your-title-graphic
