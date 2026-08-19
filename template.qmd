@@ -1,5 +1,5 @@
 ---
-title: "A Not So Classic Thesis Style"
+title: "A Classic Thesis Style"
 subtitle: "An Homage to The Elements of Typographic Style"
 author: "André Miede & Ivo Pletikosić"
 date: "February 2025"
