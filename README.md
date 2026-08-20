@@ -98,7 +98,8 @@ format:
 - `dirty-titlepage: false`: omit small author-and-title page.
 - `classoption: [draft=false]`: final PDF; omit draft timestamp footer.
 - `classoption: [draft=true]`: show draft timestamp footer.
-- `classoption: [style=arsclassica]`: use embedded `arsclassica` variant.
+- `classoption: [style=arsclassica]`: use embedded `arsclassica` variant with
+  bundled Iwona Type 1 fonts under pdfLaTeX; no separate Iwona install needed.
   Other embedded variants: `style=linedheaders`, `style=plain`.
 
 Default title graphic: `gfx/TFZsuperellipse_bw.pdf`, supplied by extension.

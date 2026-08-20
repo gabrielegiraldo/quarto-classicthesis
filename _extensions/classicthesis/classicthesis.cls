@@ -800,7 +800,7 @@
     	ItalicFont=*-Italic,%
     	BoldFont=*-Bold,%
     	BoldItalicFont=*-BoldItalic,%
-    ]{Iwona}}{\renewcommand{\sfdefault}{iwona}}
+    ]{Iwona}}{\input{\classicthesisfontpath setup.tex}}
 \renewcommand*{\ct@altfont}{\sffamily}
 
 \ifthenelse{\boolean{ct@eulerchapternumbers}}% font for the chapter numbers; scale in classicthesis is 7
