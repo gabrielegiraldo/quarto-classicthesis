@@ -1,0 +1,42 @@
+% Bundled Type 1 Iwona support for the arsclassica heading style.
+% The extension template defines \classicthesisfontpath before loading
+% classicthesis.cls, so all metrics, encodings, and PFB files are local.
+\ProvidesFile{setup.tex}[2026/08/20 bundled Iwona Type 1 support]
+
+\ifdefined\pdfmapline
+  \newcommand{\classicthesisiwonamapline}[5]{%
+    \begingroup
+    \edef\classicthesisiwonatemp{%
+      \endgroup
+      \noexpand\pdfmapline{+#1 #2 "#3 ReEncodeFont" <\classicthesisfontpath enc/#4 <\classicthesisfontpath type1/#5}%
+    }%
+    \classicthesisiwonatemp
+  }
+  \classicthesisiwonamapline{ec-iwonar}{Iwona-Regular}{encec-iwona}{ec-iwona.enc}{iwonar.pfb}
+  \classicthesisiwonamapline{ec-iwonar-sc}{Iwona-Regular}{encec-iwona-sc}{ec-iwona-sc.enc}{iwonar.pfb}
+  \classicthesisiwonamapline{ec-iwonari}{Iwona-Italic}{encec-iwona}{ec-iwona.enc}{iwonari.pfb}
+  \classicthesisiwonamapline{ec-iwonari-sc}{Iwona-Italic}{encec-iwona-sc}{ec-iwona-sc.enc}{iwonari.pfb}
+  \classicthesisiwonamapline{ec-iwonab}{Iwona-Bold}{encec-iwona}{ec-iwona.enc}{iwonab.pfb}
+  \classicthesisiwonamapline{ec-iwonab-sc}{Iwona-Bold}{encec-iwona-sc}{ec-iwona-sc.enc}{iwonab.pfb}
+  \classicthesisiwonamapline{ec-iwonabi}{Iwona-BoldItalic}{encec-iwona}{ec-iwona.enc}{iwonabi.pfb}
+  \classicthesisiwonamapline{ec-iwonabi-sc}{Iwona-BoldItalic}{encec-iwona-sc}{ec-iwona-sc.enc}{iwonabi.pfb}
+\else
+  \PackageError{classicthesis}{Bundled Iwona Type 1 fonts require pdfTeX}{%
+    Use pdfTeX for style=arsclassica.}
+\fi
+
+\DeclareFontFamily{T1}{ctiwona}{}
+\DeclareFontShape{T1}{ctiwona}{m}{n}{<->\classicthesisfontpath tfm/ec-iwonar}{}
+\DeclareFontShape{T1}{ctiwona}{m}{sc}{<->\classicthesisfontpath tfm/ec-iwonar-sc}{}
+\DeclareFontShape{T1}{ctiwona}{m}{it}{<->\classicthesisfontpath tfm/ec-iwonari}{}
+\DeclareFontShape{T1}{ctiwona}{m}{scit}{<->\classicthesisfontpath tfm/ec-iwonari-sc}{}
+\DeclareFontShape{T1}{ctiwona}{b}{n}{<->\classicthesisfontpath tfm/ec-iwonab}{}
+\DeclareFontShape{T1}{ctiwona}{b}{sc}{<->\classicthesisfontpath tfm/ec-iwonab-sc}{}
+\DeclareFontShape{T1}{ctiwona}{b}{it}{<->\classicthesisfontpath tfm/ec-iwonabi}{}
+\DeclareFontShape{T1}{ctiwona}{b}{scit}{<->\classicthesisfontpath tfm/ec-iwonabi-sc}{}
+\DeclareFontShape{T1}{ctiwona}{bx}{n}{<->ssub * ctiwona/b/n}{}
+\DeclareFontShape{T1}{ctiwona}{bx}{sc}{<->ssub * ctiwona/b/sc}{}
+\DeclareFontShape{T1}{ctiwona}{bx}{it}{<->ssub * ctiwona/b/it}{}
+\DeclareFontShape{T1}{ctiwona}{bx}{scit}{<->ssub * ctiwona/b/scit}{}
+\renewcommand{\sfdefault}{ctiwona}
+\typeout{classicthesis: Using bundled Type 1 Iwona fonts.}

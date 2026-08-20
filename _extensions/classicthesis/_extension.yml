@@ -8,6 +8,8 @@ contributes:
       documentclass: classicthesis
       template: quarto-template.tex
       pdf-engine: pdflatex
+      pdf-engine-opts:
+        - "-cnf-line=TEXFONTS=.:_extensions/gabrielegiraldo/classicthesis/fonts/iwona/tfm//:_extensions/classicthesis/fonts/iwona/tfm//:"
       top-level-division: chapter
       number-sections: true
       date-format: "MMMM YYYY"
